@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     MappedByteBuffer tfliteModel2;
     Interpreter tflite2;
     GpuDelegate gpuDelegate = new GpuDelegate();
+    GpuDelegate gpuDelegate2 = new GpuDelegate();
     int H = 56, W = 112;
     int H2 = 320, W2 = 320;
     int[] intValues = new int[W*H];
@@ -53,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        tfliteOptions.addDelegate(gpuDelegate);
-        tfliteOptions2.setNumThreads(4);
-        tfliteOptions2.setAllowFp16PrecisionForFp32(true);
+        tfliteOptions2.addDelegate(gpuDelegate2);
+//        tfliteOptions2.setNumThreads(4);
+//        tfliteOptions2.setAllowFp16PrecisionForFp32(true);
         tflite2 = new Interpreter(tfliteModel2, tfliteOptions2);
         imgData2.order(ByteOrder.nativeOrder());
         long t1 = SystemClock.uptimeMillis();
@@ -76,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        tfliteOptions.addDelegate(gpuDelegate);
+        tfliteOptions.addDelegate(gpuDelegate);
         tfliteOptions.setNumThreads(4);
-        tfliteOptions.setAllowFp16PrecisionForFp32(true);
+//        tfliteOptions.setAllowFp16PrecisionForFp32(true);
         tflite = new Interpreter(tfliteModel, tfliteOptions);
         imgData.order(ByteOrder.nativeOrder());
         t1 = SystemClock.uptimeMillis();
