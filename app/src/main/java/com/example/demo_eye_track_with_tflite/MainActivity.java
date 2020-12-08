@@ -369,14 +369,14 @@ public class MainActivity extends AppCompatActivity {
         ybg = (int)((yc-h/2)*SZ);
         _w = (int)(w*SZ);
         _h = (int)(h*SZ);
-        System.out.println(xc+"_"+yc+" "+w+" "+h);
+//        System.out.println(xc+"_"+yc+" "+w+" "+h);
 
         xbg = Math.max(0, (int)(xbg));
         ybg = Math.max(0, (int)(ybg));
         _w = Math.min(SZ-xbg, _w);
         _h = Math.min(SZ-ybg, _h);
-        System.out.println(xbg+" "+ybg+" "+_w+" "+_h);
-        bm = Bitmap.createBitmap(fgd, xbg, ybg, _w, _h/2);
+//        System.out.println(xbg+" "+ybg+" "+_w+" "+_h);
+        bm = Bitmap.createBitmap(fgd, ybg, xbg, _h, _w/2);
         bm = Bitmap.createScaledBitmap(bm, 112, 56, true);
         convertBitmapToByteBufferLand(bm);
 //        bg = SystemClock.uptimeMillis();
@@ -443,7 +443,7 @@ public class MainActivity extends AppCompatActivity {
 
     void getModel(){
         try {
-            faceModel = loadModelFile("rf.tflite", this);
+            faceModel = loadModelFile("rf_.tflite", this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -498,11 +498,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-//        for(ArrayList<Float> x: bb){
-//            for(float val: x){
-//                System.out.print(x+" ");
-//            }
-//            System.out.println();
-//        }
     }
 }
